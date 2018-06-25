@@ -1,0 +1,33 @@
+{% extends "front/front_post_base.html" %}
+
+{% block title_post %}
+    发布帖子
+{% endblock %}
+
+{% block post_js %}
+    <script src="{{ static("front/js/front_apost.js") }}"></script>
+{% endblock %}
+
+{% block board %}
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon">板块</span>
+            <select name="board_id" class="form-control">
+                {% for board in boards %}
+                    <option value="{{ board.id }}">{{ board.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block editor_content %}
+    <div class="form-group">
+        <script id="editor" type="text/plain" style="height:300px;"></script>
+    </div>
+{% endblock %}
+
+{% block post_btn %}
+    <button class="btn btn-danger" id="submit-btn">发布帖子</button>
+{% endblock %}

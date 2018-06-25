@@ -1,0 +1,33 @@
+{% extends "front/front_base.html" %}
+{% from "common/_macros.html" import static %}
+ 
+{% block title %}
+    {% block title_post %}{% endblock %}
+{% endblock %}
+ 
+ 
+{% block head %}
+    <script src="{{ static("ueditor/ueditor.config.js") }}"></script>
+    <script src="{{ static("ueditor/ueditor.all.min.js") }}"></script>
+    {% block post_js %}{% endblock %}
+{#    <script src="{{ static("front/js/front_apost.js") }}"></script>#}
+{% endblock %}
+ 
+{% block body %}
+    <form action="" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon">标题</span>
+                <input type="text" class="form-control" name="title" value="{% block default_title %}{% endblock %}">
+            </div>
+        </div>
+        {% block board %}{% endblock %}
+        {% block editor_content %}{% endblock %}
+
+ 
+        <div class="form-group">
+                {% block post_btn %}{% endblock %}
+        </div>
+    </form>
+{% endblock %}

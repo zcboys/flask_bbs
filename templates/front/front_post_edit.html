@@ -1,0 +1,43 @@
+{% extends "front/front_post_base.html" %}
+
+{% block title_post %}
+    修改帖子
+{% endblock %}
+
+{% block post_js %}
+    <script src="{{ static("front/js/front_epost.js") }}"></script>
+
+{% endblock %}
+
+{% block default_title -%}
+    {{ post.title }}
+{% endblock %}
+
+{% block board %}
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon">板块</span>
+        {% set post_board=post.board %}
+            <select name="board_id" class="form-control">
+                <option value="{{ post_board.id }}">{{ post_board.name }}</option>
+                {% for board in boards %}
+                    {% if board.id != post_board.id %}
+                        <option value="{{ board.id }}">{{ board.name }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}
+
+{% block editor_content %}
+    <div class="form-group">
+        <script id="editor" type="text/plain" style="height:300px;">
+            {{ post.content|safe }}
+        </script>
+    </div>
+{% endblock %}
+
+{% block post_btn %}
+    <button class="btn btn-danger" id="submit-btn">完成修改</button>
+{% endblock %}
